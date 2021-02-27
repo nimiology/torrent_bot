@@ -4,7 +4,6 @@ import telepot
 
 bot = telepot.Bot('your token')
 
-
 def GetDetail(LINK,chat_id):
     LINK_TEXT = requests.get(LINK).text
     BS4 = BeautifulSoup(LINK_TEXT,'html.parser')
@@ -18,7 +17,7 @@ def GetDetail(LINK,chat_id):
     SIZE = SIZE[:SIZEE]
     DES = BS4.find("pre").text
     TORRENT_LINK = BS4.find(title="Get this torrent").get("href")
-    MESSTGE = f"{NAME}\n\nproperties:\n\n\n\n\nType:\n{TYPE}\nFiles:\n{FILES}\n{SIZE}\n{DETAIL}\n\ndescription:\n****************\n{DES}\n****************\n\n\n\nLINK TORRENT:\n\n\n\n**********************************\n\n{TORRENT_LINK}\n\n**********************************"
+    MESSTGE = f"{NAME}\n\nproperties:\n\n\n\n\nType:\n{TYPE}\nFiles:\n{FILES}\n{SIZE}\n{DETAIL}\n\ndescription:\n****************\n{DES}\n****************\nLINK TORRENT:\n\n{TORRENT_LINK}\n\n**********************************"
     try:
         bot.sendMessage(chat_id,MESSTGE)
     except:
@@ -33,4 +32,4 @@ def FINDLINKS(INPUT, filter, page,chat_id):
     FINDER = BS4.find_all(class_="detLink")
     for LINK in FINDER:
         GetDetail(LINK.get("href"),chat_id)
-    bot.sendMessage(chat_id,'for see more send /seemore')
+
