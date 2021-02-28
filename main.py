@@ -17,10 +17,11 @@ def handle(msg):
 
         elif msg['text'] == '/seemore':
             try:
-                page = int(requests[chat_id][requests[chat_id].find("////")+4:])
+                page = requests[chat_id][requests[chat_id].find("////")+4:]
+                page = int(page)
                 page=page+1
                 requests[chat_id] = requests[chat_id][:requests[chat_id].find("////")+4]+str(page)
-                FINDLINKS(requests[chat_id][:requests[chat_id].find("////")-1],0,page,chat_id)
+                FINDLINKS(requests[chat_id][:requests[chat_id].find("////")],0,page,chat_id)
             except:
                 bot.sendMessage(chat_id,"what do you want to see more?")
         elif msg['text'] == '/filter':
